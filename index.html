@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Nandini 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(to right, #ffe6f0, #ffd6eb);
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h1 {
+    margin-top: 80px;
+    color: #ff3385;
+    font-size: 45px;
+  }
+
+  #message {
+    font-size: 20px;
+    color: #444;
+    width: 75%;
+    margin: auto;
+    min-height: 120px;
+    white-space: pre-line;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 18px;
+    margin: 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  #yes {
+    background-color: #ff66a3;
+    color: white;
+  }
+
+  #no {
+    background-color: #ccc;
+    position: absolute;
+  }
+
+  .heart {
+    position: absolute;
+    animation: float 5s linear infinite;
+  }
+
+  @keyframes float {
+    from {
+      transform: translateY(100vh);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-10vh);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<h1>Sorry Nandini 💔</h1>
+
+<p id="message"></p>
+
+<button id="yes" onclick="forgive()">Okay, I forgive you 😌</button>
+<button id="no">Still angry 😒</button>
+
+<script>
+  // Typing message (more emotional)
+  const text = `Hey Nandini...
+
+I know I messed up, and I hate that I hurt you 😔
+
+You’re not just anyone to me...
+You’re literally one of my favorite people 🥺💖
+
+Everything feels a little off when you're upset with me.
+
+I miss talking to you normally,
+I miss your vibe,
+and honestly... I miss YOU.
+
+I never wanted to be the reason you feel bad.
+
+Please forgive me? 🥺`;
+
+  let i = 0;
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("message").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 35);
+    }
+  }
+  typeWriter();
+
+  // YES button action
+  function forgive() {
+    document.body.innerHTML = `
+      <h1>Thank you Nandini 😭💖</h1>
+      <p>I promise I’ll make it up to you 🥺✨</p>
+      <h2>You're the best 💕</h2>
+    `;
+  }
+
+  // SMART RUNNING NO BUTTON 😈
+  const noBtn = document.getElementById("no");
+
+  function moveButton() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+
+    const distance = Math.hypot(
+      e.clientX - (rect.left + rect.width / 2),
+      e.clientY - (rect.top + rect.height / 2)
+    );
+
+    if (distance < 120) {
+      moveButton();
+    }
+  });
+
+  // Floating hearts 💖
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    const emojis = ["💖","💕","💗","💓","💞"];
+    heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
+
+  setInterval(createHeart, 250);
+
+</script>
+
+</body>
+</html>
